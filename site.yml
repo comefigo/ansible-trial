@@ -2,6 +2,11 @@
 - name: ansible trial
   hosts: all
   become: true
+  vars:
+    SITE_NAME: site-b
+    STEPS:
+      - 'step 1'
+      - 'step 2'
   tasks:
     - name: install EPEL repo
       yum:
@@ -12,3 +17,27 @@
       yum:
         name: nginx
         state: present
+
+    - name: start Nginx service
+      service:
+        name: nginx
+        state: started
+        enabled: true
+
+    - name: create HTML contents directory
+      file:
+        path: "/usr/share/nginx/html/{{ item }}"
+        state: directory
+      with_items:
+        - "site-a"
+        - "site-b"
+
+    - name: deploy Web contents for site-a
+      copy:
+        src: ./www/site-a/index.html
+        dest: /usr/share/nginx/html/site-a/index.html
+
+    - name: deploy Web contents for site-b with template
+      template:
+        src: ./www/site-b/index.html.j2
+        dest: /usr/share/nginx/html/site-b/index.html
