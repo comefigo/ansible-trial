@@ -1,0 +1,13 @@
+---
+- name: ansible trial role
+  hosts: all
+  become: true
+  vars:
+    SITE_NAME: site-b
+    STEPS:
+      - 'step 1'
+      - 'step 2'
+    MODE: ''
+  roles:
+    - role: common
+    - role: app

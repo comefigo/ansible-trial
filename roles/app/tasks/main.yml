@@ -1,0 +1,42 @@
+---
+- name: create HTML contents directory
+  file:
+    path: "/usr/share/nginx/html/{{ item }}"
+    state: directory
+  with_items:
+    - "site-a"
+    - "site-b"
+
+- name: deploy Web contents for site-a
+  copy:
+    src: site-a/index.html
+    dest: /usr/share/nginx/html/site-a/index.html
+
+- name: deploy Web contents for site-b with template
+  template:
+    src: site-b/index.html.j2
+    dest: /usr/share/nginx/html/site-b/index.html
+
+- name: deploy Web contents for product page
+  copy:
+    src: site-a/product.html
+    dest: /usr/share/nginx/html/site-a/product.html
+  when:
+    - MODE == 'product'
+
+- name: deploy Web contents for dev page
+  copy:
+    src: site-a/dev.html
+    dest: /usr/share/nginx/html/site-a/dev.html
+  when:
+    - MODE == 'dev'
+
+- name: echo something
+  command: echo "something"
+  register: result
+
+- debug: var=result
+
+- name: do something by result
+  command: echo "register"
+  when: result.stdout == "something"
