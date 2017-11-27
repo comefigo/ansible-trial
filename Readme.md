@@ -18,11 +18,17 @@
 
 ### ansibleの導入
 
-1. pythonのインストール
-2. ansibleのインストール
+1. pythonのインストール(管理者権限)
+2. ansibleのインストール(管理者権限)
 
 ```
 > pip install ansible
+```
+
+### ansible設定ファイルの配置
+
+```
+> cp config/ansible.cfg ~/.ansible.cfg
 ```
 
 ### 操作対象ホストのipをhostsに追加
@@ -34,12 +40,12 @@ app1 ansible_host=<ip>
 ### 操作対象ホストのssh鍵をhostsに追加
 
 ```
-ansible_ssh_private_key_file=../ssh/<hogehoge.pem>
+ansible_ssh_private_key_file=./ssh/<hogehoge.pem>
 ```
 
 ## 疎通確認
 
 ```
-> ansible -i aws -m ping
+> ansible -i inventory/hosts aws -m ping
 ```
 
