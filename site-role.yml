@@ -4,7 +4,7 @@
   become: true
   vars:
     SITE_NAME: site-b
-    STEPS:
+    TREES:
       - 'step 1'
       - 'step 2'
     MODE: ''
