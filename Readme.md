@@ -31,13 +31,15 @@
 > cp config/ansible.cfg ~/.ansible.cfg
 ```
 
-### 操作対象ホストの<ip>をIPまたはホスト名を変更
+### inventory/hostsファイルを編集
+
+#### 操作対象ホストの<ip>をIPまたはホスト名を変更
 
 ```
 app1 ansible_host=<ip>
 ```
 
-### 操作対象ホストの<hogehoge.pem>を変更
+#### 操作対象ホストの<hogehoge.pem>を変更
 
 ```
 ansible_ssh_private_key_file=./ssh/<hogehoge.pem>
