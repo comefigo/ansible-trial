@@ -1,6 +1,6 @@
 ---
 SITE_NAME: site-b
-STEPS:
+TREES:
   - 'step 3'
   - 'step 4'
 MODE: 'dev'
