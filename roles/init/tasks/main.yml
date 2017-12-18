@@ -2,6 +2,7 @@
 - name: set timezone to Asia/Tokyo
   timezone:
     name: Asia/Tokyo
+  become: true
 
 - name: install pip
   command: sudo easy_install pip
@@ -11,6 +12,7 @@
   pip:
     name: "{{ item }}"
     state: present
+  become: true
   with_items:
     - ansible
 

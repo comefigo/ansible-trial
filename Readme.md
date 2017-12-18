@@ -9,7 +9,7 @@
     - group_vars ･･･ グループ変数（サンプル）
     - host_vars ･･･ ホスト変数（サンプル）
 - roles
-    - common ･･･ 共通の操作関連role（nginxのインストール）
+    - common ･･･ 共通の操作関連role（apacheのインストール）
     - app  ･･･ html操作関連role
 - ssh
     - xxxxx.pem ･･･ 操作対象ホストのssh鍵
@@ -36,13 +36,15 @@
 > cp config/ansible.cfg ~/.ansible.cfg
 ```
 
-### 操作対象ホストの<ip>をIPまたはホスト名を変更
+### inventory/hostsを編集
+
+#### 操作対象ホストの<ip>をIPまたはホスト名を変更
 
 ```
 app1 ansible_host=<ip>
 ```
 
-### 操作対象ホストの<hogehoge.pem>を変更
+#### 操作対象ホストの<hogehoge.pem>を変更
 
 ```
 ansible_ssh_private_key_file=./ssh/<hogehoge.pem>

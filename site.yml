@@ -14,20 +14,20 @@
         name: epel-release
         state: present
 
-    - name: install Nginx
+    - name: install Apache
       yum:
-        name: nginx
+        name: httpd
         state: present
 
-    - name: start Nginx service
+    - name: start Apache service
       service:
-        name: nginx
+        name: httpd
         state: started
         enabled: true
 
     - name: create HTML contents directory
       file:
-        path: "/usr/share/nginx/html/{{ item }}"
+        path: "/var/www/html/{{ item }}"
         state: directory
       with_items:
         - "site-a"
@@ -36,24 +36,24 @@
     - name: deploy Web contents for site-a
       copy:
         src: ./www/site-a/index.html
-        dest: /usr/share/nginx/html/site-a/index.html
+        dest: /var/www/html/site-a/index.html
 
     - name: deploy Web contents for site-b with template
       template:
         src: ./www/site-b/index.html.j2
-        dest: /usr/share/nginx/html/site-b/index.html
+        dest: /var/www/html/site-b/index.html
 
     - name: deploy Web contents for product page
       copy:
         src: ./www/site-a/product.html
-        dest: /usr/share/nginx/html/site-a/product.html
+        dest: /var/www/html/site-a/product.html
       when:
         - MODE == 'product'
 
     - name: deploy Web contents for dev page
       copy:
         src: ./www/site-a/dev.html
-        dest: /usr/share/nginx/html/site-a/dev.html
+        dest: /var/www/html/site-a/dev.html
       when:
         - MODE == 'dev'
 

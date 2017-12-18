@@ -1,16 +1,11 @@
 ---
-- name: install EPEL repo
+- name: install Apache
   yum:
-    name: epel-release
+    name: httpd
     state: present
 
-- name: install Nginx
-  yum:
-    name: nginx
-    state: present
-
-- name: start Nginx service
+- name: start Apache service
   service:
-    name: nginx
+    name: httpd
     state: started
     enabled: true
