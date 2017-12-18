@@ -1,0 +1,57 @@
+---
+- name: set timezone to Asia/Tokyo
+  timezone:
+    name: Asia/Tokyo
+
+- name: install pip
+  command: sudo easy_install pip
+  become: true
+
+- name: install pip libs for ansible
+  pip:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - ansible
+
+- name: make work directory
+  file:
+    dest: /home/ec2-user/ansible
+    state: directory
+    mode: 0775
+
+- name: copy resources
+  copy:
+    src: ansible-trial-complete.zip
+    dest: "/home/ec2-user/ansible/ansible-trial-{{ item }}.zip"
+  with_items:
+    - "master"
+    - "complete"
+
+- name: unzip resources
+  unarchive:
+    remote_src: yes
+    src: "/home/ec2-user/ansible/ansible-trial-{{ item }}.zip"
+    dest: /home/ec2-user/ansible/
+    keep_newer: no
+  with_items:
+    - "master"
+    - "complete"
+
+- name: copy ssh key
+  copy:
+    src: ansible-trial.pem
+    dest: "/home/ec2-user/ansible/ansible-trial-{{ item }}/ssh/"
+    mode: 0600
+  with_items:
+    - "master"
+    - "complete"
+
+- name: chmod ssh folder
+  file:
+    path: "/home/ec2-user/ansible/ansible-trial-{{ item }}/ssh"
+    mode: 0700
+  with_items:
+    - "master"
+    - "complete"
+

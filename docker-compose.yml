@@ -1,0 +1,13 @@
+version: "3.2"
+services:
+  ansible-trial:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: ansible-trial
+    container_name: ansible-trial
+    hostname: ansible-trial
+    volumes:
+      - ./:/ansible
+    environment: 
+      - TZ:Asia/Tokyo

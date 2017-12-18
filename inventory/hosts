@@ -4,3 +4,13 @@ app1 ansible_host=<ip>
 [aws:vars]
 ansible_user=ec2-user
 ansible_ssh_private_key_file=./ssh/<hogehoge.pem>
+
+[base]
+app1 ansible_host=13.113.125.178
+app2 ansible_host=13.230.48.79
+app3 ansible_host=13.230.198.160
+app4 ansible_host=52.199.183.206
+
+[base:vars]
+ansible_user=ec2-user
+ansible_ssh_private_key_file=./ssh/ansible-trial.pem
