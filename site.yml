@@ -1,6 +1,6 @@
 ---
 - name: ansible trial
-  hosts: all
+  hosts: aws
   become: true
   vars:
     SITE_NAME: site-b
@@ -9,11 +9,6 @@
       - 'step 2'
     MODE: ''
   tasks:
-    - name: install EPEL repo
-      yum:
-        name: epel-release
-        state: present
-
     - name: install Apache
       yum:
         name: httpd

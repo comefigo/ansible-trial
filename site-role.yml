@@ -1,6 +1,6 @@
 ---
 - name: ansible trial role
-  hosts: all
+  hosts: aws
   become: true
   vars:
     SITE_NAME: site-b

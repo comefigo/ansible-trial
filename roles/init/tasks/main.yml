@@ -24,7 +24,7 @@
 
 - name: copy resources
   copy:
-    src: ansible-trial-complete.zip
+    src: "ansible-trial-{{ item }}.zip"
     dest: "/home/ec2-user/ansible/ansible-trial-{{ item }}.zip"
   with_items:
     - "master"
