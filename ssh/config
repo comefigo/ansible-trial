@@ -1,0 +1,5 @@
+Host remotessh
+  HostName xxx
+  User ec2-user
+  Port 22
+  IdentityFile C:\Users\xxx\.ssh\ansible-trial.pem

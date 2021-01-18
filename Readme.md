@@ -21,6 +21,14 @@
 
 ## 事前準備
 
+### Remote SSH
+
+1. VSCodeの[Remote Development](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.vscode-remote-extensionpack)をインストール
+2. Windows版[OpenSSH(Client)](https://docs.microsoft.com/ja-jp/windows-server/administration/openssh/openssh_install_firstuse)をインストール
+3. SSH鍵を`c:\Users\ユーザ名\.ssh\`に配置
+4. `./ssh/config`の`IdentityFile`に3で記載したファイルパスと`HostName`に接続するリモートのIPをそれぞれ記載する
+
+
 ### ansibleの導入
 
 1. pythonのインストール(管理者権限)
