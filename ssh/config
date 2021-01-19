@@ -1,5 +1,11 @@
-Host remotessh
+Host controllenode
   HostName xxx
   User ec2-user
   Port 22
-  IdentityFile C:\Users\xxx\.ssh\ansible-trial.pem
+  IdentityFile C:\Users\ユーザ名\.ssh\ansible-trial.pem
+
+Host targetnode
+  HostName xxx
+  User ec2-user
+  Port 22
+  IdentityFile C:\Users\ユーザ名\.ssh\ansible-trial.pem

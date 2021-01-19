@@ -12,7 +12,7 @@
     - common ･･･ 共通の操作関連role（apacheのインストール）
     - app  ･･･ html操作関連role
 - ssh
-    - xxxxx.pem ･･･ 操作対象ホストのssh鍵
+    - config    ･･･ SSHの設定ファイル
 - wwww          ･･･ デプロイ対象資源
     - site-a
     - site-b
@@ -21,48 +21,24 @@
 
 ## 事前準備
 
+ansibleの実行環境がローカル以外のリモートマシンかローカルのDockerによって、事前準備が異なります。<br/>
+リモートマシンの場合は、[Remote SSH](#Remote&nbsp;SSH)<br/>
+Dockerの場合は、[Docker](#docker)<br/>
+をそれぞれ参照して準備してください。
+
 ### Remote SSH
 
 1. VSCodeの[Remote Development](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.vscode-remote-extensionpack)をインストール
 2. Windows版[OpenSSH(Client)](https://docs.microsoft.com/ja-jp/windows-server/administration/openssh/openssh_install_firstuse)をインストール
 3. SSH鍵を`c:\Users\ユーザ名\.ssh\`に配置
 4. `./ssh/config`の`IdentityFile`に3で記載したファイルパスと`HostName`に接続するリモートのIPをそれぞれ記載する
+5. `./ssh/config`を`c:\Users\ユーザ名\.ssh\`に配置
+6. VSCodeのリモートエクスプローラーで「SSHTargets」を指定し、追加で「controllenode」、パスはssh/configまでのパスを指定する
 
+### Docker
 
-### ansibleの導入
-
-1. pythonのインストール(管理者権限)
-2. ansibleのインストール(管理者権限)
-
-```
-> pip install ansible
-```
-
-### ansible設定ファイルの配置
-
-```
-> cp config/ansible.cfg ~/.ansible.cfg
-```
-
-### inventory/hostsを編集
-
-#### 操作対象ホストの<ip>をIPまたはホスト名を変更
-
-```
-app1 ansible_host=<ip>
-```
-
-#### 操作対象ホストの<hogehoge.pem>を変更
-
-```
-ansible_ssh_private_key_file=./ssh/<hogehoge.pem>
-```
-
-## 疎通確認
-
-当フォルダで以下のコマンドを実行
-
-```
-> ansible -i inventory/hosts aws -m ping
-```
-
+1. VSCodeの[Remote Development](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.vscode-remote-extensionpack)をインストール
+2. Dockerをインストール
+3. 当リポジトリのディレクトリをDockerの共有ドライブの設定に加える
+4. 当リポジトリのルートを基点にVSCodeを起動する
+5. 「Reopen in Container」でAnsibleコンテナを起動

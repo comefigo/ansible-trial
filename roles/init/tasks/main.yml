@@ -60,6 +60,6 @@
 
 - name: copy ansible config
   ansible.builtin.copy:
-    src: "config/ansible.cfg"
+    src: "/home/ec2-user/ansible/ansible-trial/config/ansible.cfg"
     dest: "/home/ec2-user/ansible/ansible-trial/ansible.cfg"
     remote_src: yes
