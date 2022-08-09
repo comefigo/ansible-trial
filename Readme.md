@@ -7,7 +7,7 @@
 - inventory
     - hosts ･･･ 操作対象ホスト定義
 - roles
-    - common ･･･ 共通の操作関連role（nginxのインストール）
+    - common ･･･ 共通の操作関連role（apacheのインストール）
     - app  ･･･ html操作関連role
 - ssh
     - xxxxx.pem ･･･ 操作対象ホストのssh鍵
