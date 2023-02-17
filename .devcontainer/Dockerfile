@@ -1,13 +1,7 @@
 FROM python:3
 
 # update all
-RUN apt-get update && apt-get install -y --no-install-recommends
-
-# install libs
-RUN apt-get install -y vim
-
-# Copy default endpoint specific user settings overrides into container to specify Python path
-COPY .devcontainer/settings.vscode.json /root/.vscode-remote/data/Machine/settings.json
+RUN apt-get update && apt-get install -y --no-install-recommends vim
 
 # upgrade pip
 RUN pip install --upgrade pip
@@ -23,11 +17,12 @@ RUN ansible-galaxy collection install -r collection.yml
 
 # copy ssh keys
 ADD ./ssh/ /root/.ssh/
-RUN chmod 700 /root/.ssh
-RUN chmod 600 /root/.ssh/*
+RUN chmod 700 /root/.ssh && \
+    chmod 600 /root/.ssh/*
 
 # add ansible config
 ADD ./config/ansible.cfg /root/.ansible.cfg
+RUN chmod 700 /root/.ansible.cfg
 
 # Clean up
 RUN apt-get autoremove -y \

@@ -1,6 +1,5 @@
 {
 	"name": "Ansible Trial",
-	"image": "ansible-trial",
 	"dockerFile": "Dockerfile",
 	"context": "..",
 	"extensions": [
