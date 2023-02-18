@@ -12,8 +12,8 @@ WORKDIR /workspace
 COPY .devcontainer/requirements.txt /workspace/
 RUN if [ -f "requirements.txt" ]; then pip install -r requirements.txt && rm requirements.txt*; fi
 
-COPY ./collection.yml /tmp/
-RUN ansible-galaxy collection install -r collection.yml
+COPY .devcontainer/collection.yml /tmp/
+RUN ansible-galaxy collection install -r /tmp/collection.yml
 
 # copy ssh keys
 ADD ./ssh/ /root/.ssh/
