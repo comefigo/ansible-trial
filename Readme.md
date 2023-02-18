@@ -18,8 +18,11 @@
 # Github Codespacesでの実行手順（推奨）
 
 1. 新規Codespaceを作成
-1. sshフォルダに接続先のSSH鍵を配置
+1. sshフォルダに接続先のSSH鍵（キーをペースト）を配置
 1. 「Rebuild Container」を実行
+1. Ansibleのコード書く
+1. コードを実行する
+    リモートホストにIP許可が必要の場合は、[こちらの記事](https://qiita.com/kanpou0108/items/734b947f5a95109e7bb9)を参考にパブリックIPを取得し、許可する
 
 
 # ローカルでの実行手順
