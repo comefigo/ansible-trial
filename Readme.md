@@ -1,6 +1,6 @@
 # Ansible Trial
 
-## リソースの説明
+# リソースの説明
 
 - config
     - ansible.cfg   ･･･ ansibleの設定
@@ -14,7 +14,15 @@
 - site-role.yml ･･･ role実行時に使用するplaybook
 - site.yml      ･･･ 通常利用のplaybook
 
-## 事前準備
+
+# Github Codespacesでの実行手順（推奨）
+
+1. 新規Codespaceを作成
+1. sshフォルダに接続先のSSH鍵を配置
+1. 「Rebuild Container」を実行
+
+
+# ローカルでの実行手順
 
 ### ansibleの導入
 
