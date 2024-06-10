@@ -14,7 +14,7 @@
 
 - name: deploy Web contents for site-b with template
   ansible.builtin.template:
-    src: site-b/index.html.j2
+    src: site-b/index.j2.html
     dest: /var/www/html/site-b/index.html
 
 - name: deploy Web contents for product page

@@ -1,7 +1,7 @@
 FROM python:3.12.4-slim-bookworm
 
 # update all
-RUN apt-get update && apt-get install -y --no-install-recommends vim
+RUN apt-get update && apt-get install -y --no-install-recommends vim bash-completion
 
 # upgrade pip
 RUN pip install --upgrade pip
@@ -16,7 +16,7 @@ COPY .devcontainer/collection.yml /tmp/
 RUN ansible-galaxy collection install -r /tmp/collection.yml
 
 # copy ssh keys
-ADD ./ssh/ /root/.ssh/
+ADD ./ssh/ansible-trial.pem /root/.ssh/ansible-trial.pem
 RUN chmod 700 /root/.ssh && \
     chmod 600 /root/.ssh/*
 
