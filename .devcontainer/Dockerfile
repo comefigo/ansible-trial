@@ -1,4 +1,4 @@
-FROM python:3
+FROM python:3.12.4-slim-bookworm
 
 # update all
 RUN apt-get update && apt-get install -y --no-install-recommends vim
@@ -23,6 +23,10 @@ RUN chmod 700 /root/.ssh && \
 # add ansible config
 ADD ./config/ansible.cfg /root/.ansible.cfg
 RUN chmod 700 /root/.ansible.cfg
+
+# config auto completer & alias
+ADD .bashrc /tmp/
+RUN cat /tmp/.bashrc >> /root/.bashrc
 
 # Clean up
 RUN apt-get autoremove -y \
