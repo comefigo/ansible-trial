@@ -1,0 +1,42 @@
+---
+- name: create HTML contents directory
+  ansible.builtin.file:
+    path: "/var/www/html/{{ item }}"
+    state: directory
+  with_items:
+    - "site-a"
+    - "site-b"
+
+- name: deploy Web contents for site-a
+  ansible.builtin.copy:
+    src: site-a/index.html
+    dest: /var/www/html/site-a/index.html
+
+- name: deploy Web contents for site-b with template
+  ansible.builtin.template:
+    src: site-b/index.html.j2
+    dest: /var/www/html/site-b/index.html
+
+- name: deploy Web contents for product page
+  ansible.builtin.copy:
+    src: site-a/product.html
+    dest: /var/www/html/site-a/product.html
+  when:
+    - MODE == 'product'
+
+- name: deploy Web contents for dev page
+  ansible.builtin.copy:
+    src: site-a/dev.html
+    dest: /var/www/html/site-a/dev.html
+  when:
+    - MODE == 'dev'
+
+- name: echo something
+  ansible.builtin.command: echo "something"
+  register: _result
+
+- ansible.builtin.debug: var=_result
+
+- name: do something by result
+  ansible.builtin.command: echo "register"
+  when: _result.stdout == "something"

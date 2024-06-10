@@ -1,0 +1,13 @@
+---
+- name: install Apache
+  ansible.builtin.yum:
+    name: httpd
+    state: present
+  vars:
+    ansible_python_interpreter: "/usr/bin/env python2"
+
+- name: start Apache service
+  ansible.builtin.service:
+    name: httpd
+    state: started
+    enabled: true

@@ -1,0 +1,5 @@
+---
+- name: init ansible enviroment for ansible trial
+  hosts: base
+  roles:
+    - role: init

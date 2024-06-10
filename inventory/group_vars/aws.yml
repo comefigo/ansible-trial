@@ -1,0 +1,6 @@
+---
+SITE_NAME: site-b
+TREES:
+  - 'step 3'
+  - 'step 4'
+MODE: 'dev'

@@ -1,0 +1,65 @@
+---
+- name: set timezone to Asia/Tokyo
+  community.general.timezone:
+    name: Asia/Tokyo
+  become: true
+
+- ansible.builtin.yum:
+    name:
+      - "python3-3.7.9"
+      - "python3-devel-3.7.9"
+    state: present
+    lock_timeout: "120"
+  become: yes
+  vars:
+    ansible_python_interpreter: "/usr/bin/env python2"
+
+- name: install pip libs for ansible
+  ansible.builtin.pip:
+    name: "{{ item }}"
+    state: present
+    executable: pip3
+  become: true
+  with_items:
+    - ansible
+
+- name: Echo ansible version
+  command: ansible --version
+  register: _result_command
+
+- ansible.builtin.debug: msg="{{ _result_command }}"
+
+- name: make work directory
+  ansible.builtin.file:
+    dest: /home/ec2-user/ansible
+    state: directory
+    mode: 0775
+
+- name: copy resources
+  ansible.builtin.copy:
+    src: "ansible-trial.zip"
+    dest: "/home/ec2-user/ansible/ansible-trial.zip"
+
+- name: unzip resources
+  ansible.builtin.unarchive:
+    remote_src: yes
+    src: "/home/ec2-user/ansible/ansible-trial.zip"
+    dest: /home/ec2-user/ansible/
+    keep_newer: no
+
+- name: copy ssh key
+  ansible.builtin.copy:
+    src: ansible-trial.pem
+    dest: "/home/ec2-user/ansible/ansible-trial/ssh/"
+    mode: 0600
+
+- name: chmod ssh folder
+  ansible.builtin.file:
+    path: "/home/ec2-user/ansible/ansible-trial/ssh"
+    mode: 0700
+
+- name: copy ansible config
+  ansible.builtin.copy:
+    src: "/home/ec2-user/ansible/ansible-trial/config/ansible.cfg"
+    dest: "/home/ec2-user/ansible/ansible-trial/ansible.cfg"
+    remote_src: yes
