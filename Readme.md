@@ -24,12 +24,12 @@ AnsibleはローカルのDokcerコンテナで実行されますので、以下�
 
 ### Docker
 
-1. [Docker](https://desktop.docker.com/win/main/amd64/Docker%20Desktop%20Installer.exe?utm_source=docker&utm_medium=webreferral&utm_campaign=dd-smartbutton&utm_location=module&_gl=1*1ju5xpl*_ga*MTQyMjM0NzE1MS4xNjcxMTU3MTY1*_ga_XJWPQMJYHQ*MTcxODAyOTM5MS4xOTEuMS4xNzE4MDI5NDAyLjQ5LjAuMA..){:target="_blank"}をDLし、インストールします<br/>
+1. [Docker](https://desktop.docker.com/win/main/amd64/Docker%20Desktop%20Installer.exe?utm_source=docker&utm_medium=webreferral&utm_campaign=dd-smartbutton&utm_location=module&_gl=1*1ju5xpl*_ga*MTQyMjM0NzE1MS4xNjcxMTU3MTY1*_ga_XJWPQMJYHQ*MTcxODAyOTM5MS4xOTEuMS4xNzE4MDI5NDAyLjQ5LjAuMA..)をDLし、インストールします<br/>
 <b>インストール前のメモリの空きが2GB以上であること</b><br/>
 <b>※Dockerを常用しない場合は、自動起動をオフにしておくことをおすすめします</b><br/>
 すでにインストールしている場合は不要
-1. [VSCode](https://code.visualstudio.com/){:target="_blank"}をDLし、インストールします
-1. VSCodeの拡張機能「[Remote Development](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.vscode-remote-extensionpack){:target="_blank"}」をインストールします<br/>
+1. [VSCode](https://code.visualstudio.com/)をDLし、インストールします
+1. VSCodeの拡張機能「[Remote Development](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.vscode-remote-extensionpack)」をインストールします<br/>
     ![Remote Developmentの導入](./doc/vscode_install_remote_dev.png)
 1. 当ソースのディレクトリをDockerの共有ドライブの設定に加える<br/>
     `c:\ansible-trial`に当ソースがあるのであれば、このパスを追加<br/>
