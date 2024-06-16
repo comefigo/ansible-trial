@@ -25,23 +25,26 @@ AnsibleはローカルのDokcerコンテナで実行されますので、以下�
 ### Docker
 
 1. [Docker](https://desktop.docker.com/win/main/amd64/Docker%20Desktop%20Installer.exe?utm_source=docker&utm_medium=webreferral&utm_campaign=dd-smartbutton&utm_location=module&_gl=1*1ju5xpl*_ga*MTQyMjM0NzE1MS4xNjcxMTU3MTY1*_ga_XJWPQMJYHQ*MTcxODAyOTM5MS4xOTEuMS4xNzE4MDI5NDAyLjQ5LjAuMA..)をDLし、インストールします<br/>
-<b>最低メモリの空きが2GB以上であること</b><br/>
-<b>※Dockerを常用しない場合は、自動起動をオフにしておくこと</b><br/>
+<b>インストール前のメモリの空きが2GB以上であること</b><br/>
+<b>※Dockerを常用しない場合は、自動起動をオフにしておくことをおすすめします</b><br/>
 すでにインストールしている場合は不要
 1. [VSCode](https://code.visualstudio.com/)をDLし、インストールします
-1. VSCodeの[Remote Development](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.vscode-remote-extensionpack)をインストールします<br/>
+1. VSCodeの拡張機能「[Remote Development](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.vscode-remote-extensionpack)」をインストールします<br/>
     ![Remote Developmentの導入](./doc/vscode_install_remote_dev.png)
 1. 当ソースのディレクトリをDockerの共有ドライブの設定に加える<br/>
+    `c:\ansible-trial`に当ソースがあるのであれば、このパスを追加<br/>
     ![共有ドライブの設定](./doc/docker_shares.png)
 1. sshフォルダに`ansible-trial.pem`を追加します
 1. 当ソースのルートを基点にVSCodeを起動する<br/>
+    ファイルエクスプローラーが以下のようになります<br/>
     ![alt text](./doc/vscode_directory.png)
 1. Docker Desktopが起動していることを確認します<br/>
     ![alt text](./doc/docker_is_running.png)<br/>
-1. 「Shift + Ctrl + P」でRebuild and Reopen in Container」でAnsibleコンテナを起動<br/>
-    しばらく、コンテナ作成します。作成が完了すると左側にディレクトリツリーが表示されます<br/>
+1. 「Shift + Ctrl + P」で「Rebuild and Reopen in Container」でAnsibleコンテナを起動<br/>
+    しばらくの間コンテナを作成しているので、お待ちください<br/>
+    作成が完了すると左側にファイルエクスプローラーが表示されます<br/>
     ![alt text](./doc/docker_open_container.png)<br/>
-1. 「Ctrl + @」でターミナルを開き、以下のコマンドを実行し、「hello world」が出力されれば完了です<br/>
+1. 「Ctrl + @」でターミナルを開き、以下のコマンドを実行し、「hello world」が出力されば完了です<br/>
     ```shell
     ansible-playbook hello_world.yml
     ```
