@@ -1,5 +1,22 @@
 ---
 - name: init ansible enviroment for ansible trial
-  hosts: base
-  roles:
-    - role: init
+  hosts: localhost
+  connection: local
+  gather_facts: False
+  tasks:
+    - name: start an instance with a public IP address
+      amazon.aws.ec2_instance:
+        name: "Ansible trial"
+        key_name: "ansible-trial"
+        # c
+        vpc_subnet_id: 
+        instance_type: t3.small
+        security_group: "ansible-trial"
+        count: 1
+        network:
+          assign_public_ip: true
+        image_id: "{{ lookup('aws_ssm', '/aws/service/ami-amazon-linux-latest/amzn2-ami-hvm-x86_64-gp2', region='ap-northeast-1' ) }}"
+        state: present
+        region: ap-northeast-1
+        tags:
+          Name: Ansible-trial

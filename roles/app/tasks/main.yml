@@ -21,15 +21,13 @@
   ansible.builtin.copy:
     src: site-a/product.html
     dest: /var/www/html/site-a/product.html
-  when:
-    - MODE == 'product'
+  when: MODE == 'product'
 
 - name: deploy Web contents for dev page
   ansible.builtin.copy:
     src: site-a/dev.html
     dest: /var/www/html/site-a/dev.html
-  when:
-    - MODE == 'dev'
+  when: MODE == 'dev'
 
 - name: echo something
   ansible.builtin.command: echo "something"

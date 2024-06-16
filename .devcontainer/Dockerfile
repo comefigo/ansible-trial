@@ -1,7 +1,7 @@
 FROM python:3.12.4-slim-bookworm
 
 # update all
-RUN apt-get update && apt-get install -y --no-install-recommends vim bash-completion
+RUN apt-get update && apt-get install -y --no-install-recommends vim bash-completion ssh
 
 # upgrade pip
 RUN pip install --upgrade pip

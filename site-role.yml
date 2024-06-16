@@ -5,9 +5,9 @@
   vars:
     SITE_NAME: site-b
     TREES:
-      - 'step 1'
-      - 'step 2'
-    MODE: ''
+      - "step 1"
+      - "step 2"
+    MODE: ""
   roles:
     - role: common
     - role: app
