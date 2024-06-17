@@ -1,0 +1,59 @@
+---
+- name: Ansible-trial
+  hosts: aws
+  become: true
+  vars:
+    ansible_user: "ec2-user"
+    ansible_ssh_private_key_file: "~/.ssh/ansible-trial.pem"
+  vars:
+    SITE_NAME: site-b
+    TREES:
+      - "step 1"
+      - "step 2"
+    MODE: ""
+  tasks:
+    - name: install Apache
+      ansible.builtin.yum:
+        name: httpd
+        state: present
+
+    - name: start Apache service
+      ansible.builtin.systemd_service:
+        name: httpd
+        state: started
+        enabled: true
+
+    - name: create HTML contents directory
+      ansible.builtin.file:
+        path: "/var/www/html/{{ item }}"
+        state: directory
+      with_items:
+        - "site-a"
+        - "site-b"
+
+    - name: deploy Web contents
+      ansible.builtin.copy:
+        src: ./www/site-a/index.html
+        dest: /var/www/html/site-a/index.html
+
+    - name: deploy Web contents for site-b with template
+      ansible.builtin.template:
+        src: ./www/site-b/index.j2.html
+        dest: /var/www/html/site-b/index.html
+
+    - name: deploy Web contents for product page
+      ansible.builtin.copy:
+        src: ./www/site-a/product.html
+        dest: /var/www/html/site-a/product.html
+      when: MODE == "product"
+
+    - name: echo something
+      ansible.builtin.command: echo "something"
+      register: _result
+
+    - ansible.builtin.debug:
+        var: _result
+
+    - name: do something by result
+      ansible.builtin.command: echo "register"
+      when: _result.stdout == "something"
